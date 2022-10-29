@@ -1,12 +1,14 @@
-use zero2prod::run;
+use zero2prod::startup::run;
+use zero2prod::configuration::get_configuration;
 use std::net::TcpListener;
+
 
 #[actix_web::main]
 async fn main() -> Result<(), std::io::Error> {
-    let localhost = "127.0.0.1:0";
-    let listener = TcpListener::bind(&localhost)
-        .expect("Failed to bind a random port");
+    let config = get_configuration().expect("Failed to read configuration");
+    let address = format!("127.0.0.1:{}", config.application_port);
+    let listener = TcpListener::bind(address)
+        .expect("Failed to bind a port");
 
-    format!("{}:{}", localhost, listener.local_addr().unwrap().port());
     run(listener)?.await
 }
