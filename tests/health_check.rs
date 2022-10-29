@@ -83,6 +83,12 @@ fn spawn_app() -> String {
         .expect("Failed to bind a random port");
     let port = listener.local_addr().unwrap().port();
 
+    todo!("add pg_conn to run");
+    // let config = get_configuration().expect("Failed to load config");
+    // let pg_conn = PgConnection::connect(&config.database.connection_string())
+    //     .await
+    //     .expect("Failed to load pg connection");
+
     let server = zero2prod::startup::run(listener).expect("Failed to bind address");
     let _ = tokio::spawn(server);
 
