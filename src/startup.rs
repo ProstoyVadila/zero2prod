@@ -4,10 +4,7 @@ use actix_web::dev::Server;
 use std::net::TcpListener;
 use sqlx::PgPool;
 
-pub fn run(
-    listener: TcpListener,
-    pg_pool: PgPool
-) -> Result<Server, std::io::Error> {
+pub fn run(listener: TcpListener, pg_pool: PgPool) -> Result<Server, std::io::Error> {
     let pg_pool = web::Data::new(pg_pool);
 
     let server = HttpServer::new(move || {
