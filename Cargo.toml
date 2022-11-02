@@ -21,6 +21,7 @@ chrono = "0.4.15"
 env_logger = "0.9.1"
 log = "0.4.17"
 tracing = { version = "0.1", features = ["log"] }
+tracing-futures = "0.2.5"
 
 [dependencies.sqlx]
 version = "0.5.7"
